@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: khalildb-configmap
+  namespace: abdallah-default
+data:
+  mongo_url: khalildb-service

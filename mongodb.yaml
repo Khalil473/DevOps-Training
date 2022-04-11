@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: khalildb-dep
+  labels:
+    app: khalildb
+  namespace: abdallah-default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: khalildb
+  template:
+    metadata:
+      labels:
+        app: khalildb
+    spec:
+      containers:
+      - name: khalildb
+        image: mongo
+        ports:
+        - containerPort: 27017
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: root
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: root
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: khalildb-service
+  namespace: abdallah-default
+spec:
+  selector:
+    app: khalildb
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
