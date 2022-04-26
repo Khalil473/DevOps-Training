@@ -14,7 +14,8 @@ externalDatabase:
   password: admin
   database: wordpress
 
-mariadb.primary.persistence.storageClass: ceph-block
+mariadb:
+  enabled: false
 
 ## Custom ClusterIP Service
 service:
