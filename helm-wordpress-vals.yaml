@@ -1,0 +1,38 @@
+## WordPress Settings
+wordpressUsername: Kyle
+wordpressPassword: Khalil1234
+wordpressEmail: khalil.3amer2000@gmail.com
+wordpressFirstName: Khalil
+wordpressLastName: Abdallah
+wordpressBlogName: My Blog!
+
+
+## Database Settings
+externalDatabase:
+  host: mysql-service.abdallah-default.svc.cluster.local
+  user: root
+  password: admin
+  database: wordpress
+
+mariadb.primary.persistence.storageClass: ceph-block
+
+## Custom ClusterIP Service
+service:
+  type: ClusterIP
+  port: 80
+
+## Ingress to use with certManager
+ingress:
+  enabled: true
+  certManager: true
+  hostname: abdallah-wp.oweis.tech
+  extraTls:
+  - hosts:
+    - abdallah-wp.oweis.tech
+    secretName: wp-app-tls
+
+persistence:
+  enabled: true
+  storageClassName: ceph-block
+  accessMode: ReadWriteOnce
+  size: 10Gi
